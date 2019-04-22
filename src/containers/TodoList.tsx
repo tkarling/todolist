@@ -2,24 +2,20 @@ import React, { Component } from 'react'
 import AddTodo from './AddTodo'
 import Todos from '../components/Todos'
 
-interface Todo {
-  id: string
-  title: string
-  completed: boolean
-}
-
 let id = 0
 const getId = () => ++id + ''
 
+const SAMPLE_TODOS = [
+  { id: getId(), title: 'hello', completed: false },
+  { id: getId(), title: 'moi', completed: true }
+]
+
 export default class TodoList extends Component {
   state: { todos: Todo[] } = {
-    todos: [
-      { id: getId(), title: 'hello', completed: false },
-      { id: getId(), title: 'moi', completed: true }
-    ]
+    todos: SAMPLE_TODOS
   }
 
-  onAdd = (title: String) => {
+  onAdd = (title: string) => {
     const { todos } = this.state
     this.setState({
       todos: [{ id: getId(), title, completed: false }, ...todos]
@@ -46,6 +42,7 @@ export default class TodoList extends Component {
     const { todos } = this.state
     return (
       <div>
+        <header>Using Classic</header>
         <AddTodo onAdd={this.onAdd} />
         <Todos
           todos={todos}

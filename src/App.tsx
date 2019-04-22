@@ -1,15 +1,24 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './App.css'
-import TodoList from './containers/TodoList'
+import TodoListC from './containers/TodoList'
+import TodoList from './hookContainers/TodoList'
 
-class App extends Component {
-  render() {
-    return (
+const App = () => {
+  const [type, setType] = useState('hooks')
+
+  const toggleType = () =>
+    type === 'hooks' ? setType('classic') : setType('hooks')
+
+  return (
+    <div>
       <div className="App">
-        <TodoList />
+        <div>
+          <button onClick={toggleType}>swap</button>
+        </div>
+        {type === 'hooks' ? <TodoList /> : <TodoListC />}
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default App
