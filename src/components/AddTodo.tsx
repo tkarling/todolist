@@ -3,11 +3,13 @@ import React from 'react'
 const AddTodo = ({
   onAdd,
   onChange,
-  title
+  title,
+  inputRef
 }: {
   onAdd: Function
   onChange: Function
   title: string
+  inputRef: any
 }) => {
   const onSubmit = (event: any) => {
     event.preventDefault()
@@ -16,6 +18,7 @@ const AddTodo = ({
   return (
     <form onSubmit={onSubmit}>
       <input
+        ref={inputRef}
         placeholder="add todo"
         value={title}
         onChange={(event: any) =>

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import AddTodo from './AddTodo'
 import Todos from '../components/Todos'
 
-let id = 0
-const getId = () => ++id + ''
 const STORAGE_KEY = 'todos' + 'H'
 
 const TodoList = () => {
@@ -15,7 +13,7 @@ const TodoList = () => {
   }, [todos])
 
   const onAdd = (title: string) => {
-    setTodos([{ id: getId(), title, completed: false }, ...todos])
+    setTodos([{ id: new Date().getTime(), title, completed: false }, ...todos])
   }
 
   const onDelete = (todoToDelete: Todo) => {

@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import AddTodo from './AddTodo'
 import Todos from '../components/Todos'
 
-let id = 0
-const getId = () => ++id + ''
 const STORAGE_KEY = 'todos'
 
 interface TodoListState {
@@ -29,7 +27,7 @@ export default class TodoList extends Component {
   onAdd = (title: string) => {
     const { todos } = this.state
     this.setState({
-      todos: [{ id: getId(), title, completed: false }, ...todos]
+      todos: [{ id: new Date().getTime(), title, completed: false }, ...todos]
     })
   }
 
