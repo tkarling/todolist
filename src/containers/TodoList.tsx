@@ -4,15 +4,26 @@ import Todos from '../components/Todos'
 
 let id = 0
 const getId = () => ++id + ''
+const STORAGE_KEY = 'todos'
 
-const SAMPLE_TODOS = [
-  { id: getId(), title: 'hello', completed: false },
-  { id: getId(), title: 'moi', completed: true }
-]
+interface TodoListState {
+  todos: Todo[]
+}
 
 export default class TodoList extends Component {
-  state: { todos: Todo[] } = {
-    todos: SAMPLE_TODOS
+  state: TodoListState = {
+    todos: []
+  }
+
+  componentDidMount() {
+    const todos = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
+    this.setState({ todos })
+  }
+
+  componentDidUpdate(prevProps: {}, prevState: TodoListState) {
+    if (prevState.todos !== this.state.todos) {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.todos))
+    }
   }
 
   onAdd = (title: string) => {

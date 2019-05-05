@@ -1,29 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AddTodo from './AddTodo'
 import Todos from '../components/Todos'
 
 let id = 0
 const getId = () => ++id + ''
-
-const SAMPLE_TODOS = [
-  { id: getId(), title: 'hello', completed: false },
-  { id: getId(), title: 'moi', completed: true }
-]
+const STORAGE_KEY = 'todos' + 'H'
 
 const TodoList = () => {
-  const [todos, setTodos] = useState(SAMPLE_TODOS)
+  const initialTodos = () =>
+    JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
+  const [todos, setTodos] = useState(initialTodos)
+  useEffect(() => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+  }, [todos])
 
   const onAdd = (title: string) => {
     setTodos([{ id: getId(), title, completed: false }, ...todos])
   }
 
   const onDelete = (todoToDelete: Todo) => {
-    setTodos(todos.filter(todo => todo.id !== todoToDelete.id))
+    setTodos(todos.filter((todo: Todo) => todo.id !== todoToDelete.id))
   }
 
   const onToggle = (todoToToggle: Todo) => {
     setTodos(
-      todos.map(todo =>
+      todos.map((todo: Todo) =>
         todo.id !== todoToToggle.id
           ? todo
           : { ...todo, completed: !todo.completed }
