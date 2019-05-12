@@ -10,13 +10,11 @@ const App = () => {
     type === 'hooks' ? setType('classic') : setType('hooks')
 
   return (
-    <div>
-      <div className="App">
-        <div>
-          <button onClick={toggleType}>swap</button>
-        </div>
-        {type === 'hooks' ? <TodoList /> : <TodoListC />}
+    <div className="App">
+      <div>
+        <button onClick={toggleType}>swap</button>
       </div>
+      {type === 'hooks' ? <TodoList /> : <TodoListC />}
     </div>
   )
 }

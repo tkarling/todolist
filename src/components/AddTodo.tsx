@@ -14,7 +14,7 @@ const AddTodo = ({
 }) => {
   const onSubmit = (event: any) => {
     event.preventDefault()
-    if (onAdd) {
+    if (onAdd && title && title.length) {
       onAdd(title)
     }
   }
@@ -23,15 +23,15 @@ const AddTodo = ({
       ? onChange(event.target.value)
       : onSubmit(event)
   return (
-    <form onSubmit={onSubmit}>
+    <form className={styles.AddTodo} onSubmit={onSubmit}>
       <input
-        className={styles.inputBox}
+        className={styles.AddTodoInputBox}
         ref={inputRef}
         placeholder="add todo"
         value={title}
         onChange={onInputChange}
       />
-      <input className={styles.submit} type="submit" value="submit" />
+      <input className={styles.AddTodoSubmit} type="submit" value="submit" />
     </form>
   )
 }

@@ -1,0 +1,28 @@
+.Todos {
+  margin-top: 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.TodosRow {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 4px 0px;
+}
+
+.TodosTitle {
+  width: 100%;
+  padding-left: 8px;
+}
+
+.TodosDelete {
+  background-color: red;
+}
+
+.TodosEmpty {
+  text-align: center;
+}

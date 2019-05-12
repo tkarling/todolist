@@ -1,11 +1,16 @@
-.submit {
-  background-color: cornflowerblue;
-  color: white;
-  padding: 2px 8px;
-  margin-left: 8px;
-  border-radius: 4px;
+.AddTodo {
+  margin-top: 8px;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
-.inputBox {
+.AddTodoSubmit {
+  margin-left: 8px;
+}
+
+.AddTodoInputBox {
   border-radius: 4px;
+  width: 100%;
 }

@@ -1,25 +1,36 @@
 import React from 'react'
+import styles from './Todos.module.css'
 
 const Todos = ({
-  todos,
+  todos = [],
   onDelete,
   onToggle
 }: {
-  todos: any[]
-  onDelete: Function
-  onToggle: Function
+  todos?: any[]
+  onDelete?: Function
+  onToggle?: Function
 }) => (
-  <div>
-    {todos.map(todo => (
-      <div key={todo.id}>
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={event => onToggle(todo)}
-        />{' '}
-        {todo.title} <button onClick={event => onDelete(todo)}>delete</button>
-      </div>
-    ))}
+  <div className={styles.Todos}>
+    {todos.length ? (
+      todos.map(todo => (
+        <div className={styles.TodosRow} key={todo.id}>
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onChange={event => onToggle && onToggle(todo)}
+          />{' '}
+          <span className={styles.TodosTitle}>{todo.title} </span>
+          <button
+            className={styles.TodosDelete}
+            onClick={event => onDelete && onDelete(todo)}
+          >
+            x
+          </button>
+        </div>
+      ))
+    ) : (
+      <span className={styles.TodosEmpty}>No items on this list </span>
+    )}
   </div>
 )
 
