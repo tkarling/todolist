@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './AddTodo.module.css'
 
 const AddTodo = ({
   onAdd,
@@ -6,26 +7,31 @@ const AddTodo = ({
   title,
   inputRef
 }: {
-  onAdd: Function
-  onChange: Function
-  title: string
-  inputRef: any
+  title?: string
+  inputRef?: any
+  onAdd?: Function
+  onChange?: Function
 }) => {
   const onSubmit = (event: any) => {
     event.preventDefault()
-    onAdd(title)
+    if (onAdd) {
+      onAdd(title)
+    }
   }
+  const onInputChange = (event: any) =>
+    onChange && event.keyCode !== 13
+      ? onChange(event.target.value)
+      : onSubmit(event)
   return (
     <form onSubmit={onSubmit}>
       <input
+        className={styles.inputBox}
         ref={inputRef}
         placeholder="add todo"
         value={title}
-        onChange={(event: any) =>
-          event.keyCode !== 13 ? onChange(event.target.value) : onSubmit(event)
-        }
+        onChange={onInputChange}
       />
-      <input type="submit" value="submit" />
+      <input className={styles.submit} type="submit" value="submit" />
     </form>
   )
 }
