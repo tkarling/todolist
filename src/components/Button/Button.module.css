@@ -1,0 +1,8 @@
+.ButtonEnabled {
+  cursor: pointer;
+}
+
+.ButtonDisabled {
+  cursor: not-allowed;
+  background-color: grey;
+}

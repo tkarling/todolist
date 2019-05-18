@@ -4,8 +4,8 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
-import Todos from './Todos'
-import { useTodos } from '../customHookContainers/TodoList'
+import Todos from '.'
+import { useTodos } from '../../customHookContainers/TodoList'
 const STORAGE_KEY = 'todos' + 'SB'
 
 const DEFAULT_TODOS: Todo[] = [
@@ -29,6 +29,16 @@ const TodosContainer = ({}) => {
   return <Todos todos={todos} onDelete={onDelete} onToggle={onToggle} />
 }
 
+storiesOf('Todos with Container', module).add('with items', () => (
+  <TodosContainer />
+))
+
 storiesOf('Todos', module)
   .add('empty list', () => <Todos />)
-  .add('with items', () => <TodosContainer />)
+  .add('with items', () => (
+    <Todos
+      todos={DEFAULT_TODOS}
+      onDelete={action('Deleted')}
+      onToggle={action('Toggled')}
+    />
+  ))
