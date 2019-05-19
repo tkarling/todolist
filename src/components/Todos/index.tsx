@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Todos.module.css'
+import Button from '../Button'
 
 const Todos = ({
   todos = [],
@@ -14,18 +15,17 @@ const Todos = ({
     {todos.length ? (
       todos.map(todo => (
         <div className={styles.TodosRow} key={todo.id}>
-          <input
-            type="checkbox"
-            checked={todo.completed}
-            onChange={event => onToggle && onToggle(todo)}
-          />{' '}
+          <div>
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={event => onToggle && onToggle(todo)}
+            />
+          </div>
           <span className={styles.TodosTitle}>{todo.title} </span>
-          <button
-            className={styles.TodosDelete}
-            onClick={event => onDelete && onDelete(todo)}
-          >
-            x
-          </button>
+          <Button type="danger" onClick={event => onDelete && onDelete(todo)}>
+            X
+          </Button>
         </div>
       ))
     ) : (

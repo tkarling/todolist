@@ -1,3 +1,13 @@
+.ButtonPrimary {
+  background-color: blue;
+  padding: 2px 8px;
+}
+
+.ButtonDanger {
+  background-color: red;
+  padding: 2px 8px;
+}
+
 .ButtonEnabled {
   cursor: pointer;
 }

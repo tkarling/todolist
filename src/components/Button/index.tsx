@@ -2,28 +2,28 @@ import React from 'react'
 import styles from './Button.module.css'
 
 const Button = ({
-  text,
   disabled = false,
+  type = 'primary',
   onClick = () => {
     /** noop */
   },
-  backgroundColor = 'blue'
+  children
 }: {
-  text: string
   disabled?: boolean
+  type: 'primary' | 'danger'
   onClick?: (event: any) => void
-  backgroundColor?: string
+  children: any
 }) => {
   const myClass = disabled ? styles.ButtonDisabled : styles.ButtonEnabled
-  const myStyle = disabled ? {} : { backgroundColor }
+  const myColorClass =
+    styles[`Button${type[0].toUpperCase() + type.substring(1)}`]
   return (
     <button
-      className={myClass}
-      style={myStyle}
+      className={`${myColorClass}  ${myClass}`}
       disabled={disabled}
       onClick={onClick}
     >
-      {text}
+      {children}
     </button>
   )
 }

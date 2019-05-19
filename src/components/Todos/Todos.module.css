@@ -19,10 +19,6 @@
   padding-left: 8px;
 }
 
-.TodosDelete {
-  background-color: red;
-}
-
 .TodosEmpty {
   text-align: center;
 }
