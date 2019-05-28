@@ -5,12 +5,14 @@ const AddTodo = ({
   onAdd,
   onChange,
   title,
-  inputRef
+  inputRef,
+  width
 }: {
   title?: string
   inputRef?: any
   onAdd?: Function
   onChange?: Function
+  width?: number
 }) => {
   const onSubmit = (event: any) => {
     event.preventDefault()
@@ -22,8 +24,14 @@ const AddTodo = ({
     onChange && event.keyCode !== 13
       ? onChange(event.target.value)
       : onSubmit(event)
+
+  const backgroundColor = width && width > 300 ? 'purple' : undefined
   return (
-    <form className={styles.AddTodo} onSubmit={onSubmit}>
+    <form
+      className={styles.AddTodo}
+      style={{ backgroundColor }}
+      onSubmit={onSubmit}
+    >
       <input
         className={styles.AddTodoInputBox}
         ref={inputRef}

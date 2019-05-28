@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react'
 import AddTodo from '../components/AddTodo'
+import Size from './Size'
 
 class AddToDoContainer extends Component<
   { onAdd: Function },
@@ -25,12 +26,17 @@ class AddToDoContainer extends Component<
   render() {
     const { title } = this.state
     return (
-      <AddTodo
-        inputRef={this.inputRef}
-        onAdd={this.onAdd}
-        onChange={this.onChange}
-        title={title}
-      />
+      <Size>
+        {({ width }: { width: number }) => (
+          <AddTodo
+            inputRef={this.inputRef}
+            onAdd={this.onAdd}
+            onChange={this.onChange}
+            title={title}
+            width={width}
+          />
+        )}
+      </Size>
     )
   }
 }

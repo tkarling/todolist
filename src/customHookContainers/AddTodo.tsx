@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import AddTodo from '../components/AddTodo'
+import useSize from './useSize'
 
 // exported for storybook
 export const useAddTodo = (onAdd: Function) => {
@@ -24,14 +25,17 @@ export const useAddTodo = (onAdd: Function) => {
 
 const AddToDoContainer = ({ onAdd }: { onAdd: Function }) => {
   const [title, inputRef, onAddAndEmpty, onChange] = useAddTodo(onAdd)
-
+  const [size, ref] = useSize()
   return (
-    <AddTodo
-      inputRef={inputRef}
-      onAdd={onAddAndEmpty}
-      onChange={onChange}
-      title={title}
-    />
+    <div ref={ref as any}>
+      <AddTodo
+        inputRef={inputRef}
+        onAdd={onAddAndEmpty}
+        onChange={onChange}
+        title={title}
+        width={(size as any).width}
+      />
+    </div>
   )
 }
 
