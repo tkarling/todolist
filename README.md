@@ -1,3 +1,74 @@
+# About hooks
+
+- functions instead of classes -> no need to toggle between function/class
+- can have several of each hook type in one function -> easier to separate concerns
+- hooks must be on top level, lint rules to help identifying issues
+
+## useState
+
+```
+[count, setCount] = useState(0)
+```
+
+- instead of setState
+- each state variable can have it's own hook. But objects OK too.
+- returns a pair of state & set functin in array
+- input default state
+- input can be function e.g. in which case it is run once
+
+## useEffect
+
+```
+useEffect(() => {
+    document.title = `You clicked ${count} times`;
+})
+
+useEffect(() => {
+  ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+
+  return () => {
+    ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+  };
+}, []);
+```
+
+- instead of lifecycleMethods - componentDidMount, componentDidUpdate, componentWillUnmount
+- default - no 2nd prop => run every render
+- 2nd prop [] => run only once
+- 2nd prop e.g [count] => run when count updates
+- can optionally contain cleanup function
+
+## useRef
+
+```
+const inputRef = useRef()
+useEffect(() => {
+  inputRef.current.focus()
+}, [])
+```
+
+- instead of createRef
+- allows using refs in a function, e.g. for focus
+- makes possible to store value, which does not cause render similar to when using instance props
+
+## custom hooks
+
+```
+const {width, height} = useWindowSize();
+```
+
+- implementation in https://github.com/streamich/react-use/blob/master/src/useWindowSize.ts
+- usage example in https://github.com/streamich/react-use/blob/master/docs/useWindowSize.md
+- must start with use
+- makes reusing state very easy
+
+## Next
+
+- useRedux
+- useContext
+
+# Basic Create react app instructions
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
