@@ -6,7 +6,6 @@ import { linkTo } from '@storybook/addon-links'
 
 import Todos from '.'
 import { useTodos } from '../../customHookContainers/TodoList'
-const STORAGE_KEY = 'todos' + 'SB'
 
 const DEFAULT_TODOS: Todo[] = [
   {
@@ -22,10 +21,9 @@ const DEFAULT_TODOS: Todo[] = [
 ]
 
 const TodosContainer = ({}) => {
-  const [todos, onAdd, onDelete, onToggle] = useTodos(
-    STORAGE_KEY,
-    DEFAULT_TODOS
-  )
+  const [todos, onAdd, onDelete, onToggle] = useTodos({
+    defaultTodos: DEFAULT_TODOS
+  })
   return <Todos todos={todos} onDelete={onDelete} onToggle={onToggle} />
 }
 

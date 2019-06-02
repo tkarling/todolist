@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import useLocalStorage from './useLocalStorage'
 import AddTodo from './AddTodo'
 import Todos from '../components/Todos'
 
-const STORAGE_KEY = 'todos' + 'CH'
-
 // exported for storybook
-export const useTodos = (storageKey: string, defaultTodos: Todo[] = []) => {
-  const initialTodos = () =>
-    JSON.parse(
-      window.localStorage.getItem(storageKey) || JSON.stringify(defaultTodos)
-    )
-  const [todos, setTodos] = useState(initialTodos)
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-  }, [todos])
+export const useTodos = ({
+  defaultTodos = [],
+  storageKey = ''
+}: {
+  defaultTodos?: Todo[]
+  storageKey?: string
+}) => {
+  const [todos, setTodos] = storageKey
+    ? useLocalStorage(storageKey, defaultTodos)
+    : useState(defaultTodos)
 
   const onAdd = (title: string) => {
     setTodos([{ id: new Date().getTime(), title, completed: false }, ...todos])
@@ -35,8 +35,12 @@ export const useTodos = (storageKey: string, defaultTodos: Todo[] = []) => {
   return [todos, onAdd, onDelete, onToggle]
 }
 
+const STORAGE_KEY = 'todos' + 'CH'
+
 const TodoList = () => {
-  const [todos, onAdd, onDelete, onToggle] = useTodos(STORAGE_KEY)
+  const [todos, onAdd, onDelete, onToggle] = useTodos({
+    storageKey: STORAGE_KEY
+  })
   return (
     <div>
       <header>Using Custom Hooks</header>
