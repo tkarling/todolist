@@ -3,7 +3,7 @@ import AddTodo from '../components/AddTodo'
 import useSize from './useSize'
 
 // exported for storybook
-export const useAddTodo = (onAdd: Function) => {
+export const useAddTodo = (onAdd: (title: string) => void) => {
   const [title, setTitle] = useState('')
 
   const inputRef: any = useRef()
@@ -23,7 +23,7 @@ export const useAddTodo = (onAdd: Function) => {
   return [title, inputRef, onAddAndEmpty, onChange]
 }
 
-const AddToDoContainer = ({ onAdd }: { onAdd: Function }) => {
+const AddToDoContainer = ({ onAdd }: { onAdd: (title: string) => void }) => {
   const [title, inputRef, onAddAndEmpty, onChange] = useAddTodo(onAdd)
   const [size, ref] = useSize()
   return (

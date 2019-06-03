@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import useLocalStorage from './useLocalStorage'
 import AddTodo from './AddTodo'
 import Todos from '../components/Todos'
 
 // exported for storybook
-export const useTodos = ({
-  defaultTodos = [],
-  storageKey = ''
-}: {
-  defaultTodos?: Todo[]
-  storageKey?: string
-}) => {
-  const [todos, setTodos] = storageKey
-    ? useLocalStorage(storageKey, defaultTodos)
-    : useState(defaultTodos)
+export const useTodos = (defaultTodos: Todo[] = []) => {
+  const [todos, setTodos] = useState(defaultTodos)
 
   const onAdd = (title: string) => {
-    setTodos([{ id: new Date().getTime(), title, completed: false }, ...todos])
+    setTodos([
+      { id: new Date().getTime() + '', title, completed: false },
+      ...todos
+    ])
   }
 
   const onDelete = (todoToDelete: Todo) => {
@@ -32,15 +27,28 @@ export const useTodos = ({
       )
     )
   }
-  return [todos, onAdd, onDelete, onToggle]
+  return [todos, onAdd, onDelete, onToggle] as any
 }
 
 const STORAGE_KEY = 'todos' + 'CH'
 
 const TodoList = () => {
-  const [todos, onAdd, onDelete, onToggle] = useTodos({
-    storageKey: STORAGE_KEY
-  })
+  const [storedTodos, setStoredTodos] = useLocalStorage(STORAGE_KEY)
+  const [todos, onAddR, onDeleteR, onToggleR] = useTodos(storedTodos)
+
+  const onAdd = (title: string) => {
+    onAddR(title)
+    setStoredTodos(todos)
+  }
+  const onDelete = (todo: Todo) => {
+    onDeleteR(todo)
+    setStoredTodos(todos)
+  }
+  const onToggle = (todo: Todo) => {
+    onToggleR(todo)
+    setStoredTodos(todos)
+  }
+
   return (
     <div>
       <header>Using Custom Hooks</header>

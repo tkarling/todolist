@@ -21,10 +21,14 @@ const DEFAULT_TODOS: Todo[] = [
 ]
 
 const TodosContainer = ({}) => {
-  const [todos, onAdd, onDelete, onToggle] = useTodos({
-    defaultTodos: DEFAULT_TODOS
-  })
-  return <Todos todos={todos} onDelete={onDelete} onToggle={onToggle} />
+  const [todos, onAdd, onDelete, onToggle] = useTodos(DEFAULT_TODOS)
+  return (
+    <Todos
+      todos={todos as any}
+      onDelete={onDelete as any}
+      onToggle={onToggle as any}
+    />
+  )
 }
 
 storiesOf('Todos with Container', module).add('with items', () => (
