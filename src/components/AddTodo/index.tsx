@@ -2,10 +2,10 @@ import React from 'react'
 import styles from './AddTodo.module.css'
 
 const AddTodo = ({
-  onAdd,
-  onChange,
   title,
   inputRef,
+  onAdd,
+  onChange,
   width
 }: {
   title?: string

@@ -4,12 +4,15 @@ import useSize from './useSize'
 
 // exported for storybook
 export const useAddTodo = (onAdd: (title: string) => void) => {
-  const [title, setTitle] = useState('')
-
   const inputRef: any = useRef()
   useEffect(() => {
     inputRef.current.focus()
   }, [])
+
+  const [title, setTitle] = useState('')
+  const onChange = (title: string) => {
+    setTitle(title)
+  }
 
   const onAddAndEmpty = (title: string) => {
     onAdd(title)
@@ -17,9 +20,6 @@ export const useAddTodo = (onAdd: (title: string) => void) => {
     inputRef.current.focus()
   }
 
-  const onChange = (title: string) => {
-    setTitle(title)
-  }
   return [title, inputRef, onAddAndEmpty, onChange]
 }
 
