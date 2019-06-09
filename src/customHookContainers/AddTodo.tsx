@@ -23,20 +23,24 @@ export const useAddTodo = (onAdd: (title: string) => void) => {
   return [title, inputRef, onAddAndEmpty, onChange]
 }
 
-const AddToDoContainer = ({ onAdd }: { onAdd: (title: string) => void }) => {
-  const [title, inputRef, onAddAndEmpty, onChange] = useAddTodo(onAdd)
-  const [size, ref] = useSize()
-  return (
-    <div ref={ref as any}>
-      <AddTodo
-        inputRef={inputRef}
-        onAdd={onAddAndEmpty}
-        onChange={onChange}
-        title={title}
-        width={(size as any).width}
-      />
-    </div>
-  )
-}
+const AddToDoContainer = React.memo(
+  ({ onAdd }: { onAdd: (title: string) => void }) => {
+    const [title, inputRef, onAddAndEmpty, onChange] = useAddTodo(onAdd)
+    const [size, ref] = useSize()
+    console.log('renderadd')
+
+    return (
+      <div ref={ref as any}>
+        <AddTodo
+          inputRef={inputRef}
+          onAdd={onAddAndEmpty}
+          onChange={onChange}
+          title={title}
+          width={(size as any).width}
+        />
+      </div>
+    )
+  }
+)
 
 export default AddToDoContainer

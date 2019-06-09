@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useLocalStorage from './useLocalStorage'
 import AddTodo from './AddTodo'
 import Todos from '../components/Todos'
@@ -36,17 +36,18 @@ const TodoList = () => {
   const [storedTodos, setStoredTodos] = useLocalStorage(STORAGE_KEY)
   const [todos, onAddR, onDeleteR, onToggleR] = useTodos(storedTodos)
 
+  useEffect(() => {
+    setStoredTodos(todos)
+  }, [todos])
+
   const onAdd = (title: string) => {
     onAddR(title)
-    setStoredTodos(todos)
   }
   const onDelete = (todo: Todo) => {
     onDeleteR(todo)
-    setStoredTodos(todos)
   }
   const onToggle = (todo: Todo) => {
     onToggleR(todo)
-    setStoredTodos(todos)
   }
 
   return (

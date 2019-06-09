@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect, useCallback } from 'react'
 import useLocalStorage from '../customHookContainers/useLocalStorage'
 import AddTodo from '../customHookContainers/AddTodo'
 import Todos from '../components/Todos'
@@ -29,20 +29,21 @@ const STORAGE_KEY = 'todos' + 'CHR'
 
 const TodoList = () => {
   const [storedTodos, setStoredTodos] = useLocalStorage(STORAGE_KEY)
-  const [todos, dispatch] = useReducer(reducer, storedTodos)
+  const [todos, dispatch] = useReducer(reducer, [], () => storedTodos)
 
-  const onAdd = (title: string) => {
+  useEffect(() => {
+    setStoredTodos(todos)
+  }, [todos])
+
+  const onAdd = useCallback((title: string) => {
     dispatch({ type: 'add', title })
-    setStoredTodos(todos)
-  }
-  const onDelete = (todo: Todo) => {
+  }, [])
+  const onDelete = useCallback((todo: Todo) => {
     dispatch({ type: 'delete', todo })
-    setStoredTodos(todos)
-  }
-  const onToggle = (todo: Todo) => {
+  }, [])
+  const onToggle = useCallback((todo: Todo) => {
     dispatch({ type: 'toggle', todo })
-    setStoredTodos(todos)
-  }
+  }, [])
 
   return (
     <div>

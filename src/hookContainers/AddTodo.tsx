@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import AddTodo from '../components/AddTodo'
 
-const AddToDoContainer = (props: { onAdd: Function }) => {
+const AddToDoContainer = React.memo((props: { onAdd: Function }) => {
   const inputRef: any = useRef()
   useEffect(() => {
     inputRef.current.focus()
@@ -26,6 +26,6 @@ const AddToDoContainer = (props: { onAdd: Function }) => {
       title={title}
     />
   )
-}
+})
 
 export default AddToDoContainer
