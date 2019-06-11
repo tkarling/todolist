@@ -62,10 +62,26 @@ const {width, height} = useWindowSize();
 - must start with use
 - makes reusing state very easy
 
-## Next
+## useReducer
 
-- useRedux
-- useContext
+```
+const [todos, dispatch] = useReducer(reducer, [], () => storedTodos)
+```
+
+- like redux, less boilerplate
+- additionally with context: not just one global state,
+
+## useContext
+
+```
+const value = useContext(MyContext);
+const { todos, dispatch } = useContext(TodosContext)
+```
+
+- share values without passing props
+- can create custom hook to setup context including dispatch/ actions
+
+=======================================
 
 # Basic Create react app instructions
 
