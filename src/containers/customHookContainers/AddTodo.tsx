@@ -4,8 +4,7 @@ import useSize from '../../hooks/useSize'
 
 import AddTodo from '../../components/AddTodo'
 
-// exported for storybook
-export const useAddTodo = (onAdd: (title: string) => void) => {
+const useAddTodo = (onAdd: (title: string) => void) => {
   const inputRef: any = useRef()
   useEffect(() => {
     inputRef.current.focus()

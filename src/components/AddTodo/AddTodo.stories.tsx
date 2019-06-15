@@ -5,21 +5,20 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
 import AddTodo from '.'
-import { useAddTodo } from '../../containers/customHookContainers/AddTodo'
+import useInput from '../../hooks/useInput'
 
 const AddTodoContainer = ({}) => {
-  // const onAdd = (title: string) => console.log('added: ' + title)
-  const [title, inputRef, onAddAndEmpty, onChange] = useAddTodo(action('added'))
+  const [title, inputRef, { onSubmit, onChange }] = useInput(action('added'))
   return (
     <AddTodo
       inputRef={inputRef}
-      onAdd={onAddAndEmpty}
+      onAdd={onSubmit}
       onChange={onChange}
       title={title}
     />
   )
 }
 
-storiesOf('AddTodo with Container', module).add('default', () => (
+storiesOf('AddTodo with hook', module).add('default', () => (
   <AddTodoContainer />
 ))

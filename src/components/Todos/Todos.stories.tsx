@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
 import Todos from '.'
-import { useTodos } from '../../containers/customHookContainers/TodoList'
+import todosReducer from '../../containers/reducerContainers/todosReducer'
 
 const DEFAULT_TODOS: Todo[] = [
   {
@@ -21,17 +21,18 @@ const DEFAULT_TODOS: Todo[] = [
 ]
 
 const TodosContainer = ({}) => {
-  const [todos, onAdd, onDelete, onToggle] = useTodos(DEFAULT_TODOS)
+  const [todos, dispatch] = useReducer(todosReducer, DEFAULT_TODOS)
+
   return (
     <Todos
       todos={todos as any}
-      onDelete={onDelete as any}
-      onToggle={onToggle as any}
+      onDelete={(todo: Todo) => dispatch({ type: 'delete', todo })}
+      onToggle={(todo: Todo) => dispatch({ type: 'toggle', todo })}
     />
   )
 }
 
-storiesOf('Todos with Container', module).add('with items', () => (
+storiesOf('Todos with useReducer', module).add('with items', () => (
   <TodosContainer />
 ))
 

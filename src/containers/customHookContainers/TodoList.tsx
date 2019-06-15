@@ -5,8 +5,7 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 import AddTodo from './AddTodo'
 import Todos from '../../components/Todos'
 
-// exported for storybook
-export const useTodos = (defaultTodos: Todo[] = []) => {
+const useTodos = (defaultTodos: Todo[] = []) => {
   const [todos, setTodos] = useState(defaultTodos)
 
   const onAdd = (title: string) => {
