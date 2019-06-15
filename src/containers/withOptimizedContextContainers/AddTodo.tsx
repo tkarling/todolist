@@ -1,11 +1,11 @@
 import React from 'react'
 
-import useSize from '../hooks/useSize'
-import useInput from '../hooks/useInput'
+import useSize from '../../hooks/useSize'
+import useInput from '../../hooks/useInput'
 
 import { connect, selectDispatchOnly } from './TodosContext'
 
-import AddTodo from '../components/AddTodo'
+import AddTodo from '../../components/AddTodo'
 
 const AddToDoContainer = React.memo(({ dispatch }: any) => {
   const [title, inputRef, { onSubmit, onChange }] = useInput(

@@ -1,5 +1,5 @@
 import React, { PureComponent, createRef } from 'react'
-import AddTodo from '../components/AddTodo'
+import AddTodo from '../../components/AddTodo'
 import Size from './Size'
 
 class AddToDoContainer extends PureComponent<

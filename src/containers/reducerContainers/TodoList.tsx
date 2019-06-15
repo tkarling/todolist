@@ -1,10 +1,10 @@
 import React, { useReducer, useEffect, useCallback } from 'react'
 
-import useLocalStorage from '../hooks/useLocalStorage'
+import useLocalStorage from '../../hooks/useLocalStorage'
 import reducer from './todosReducer'
 
 import AddTodo from './AddTodo'
-import Todos from '../components/Todos'
+import Todos from '../../components/Todos'
 
 const STORAGE_KEY = 'todos' + 'CHR'
 

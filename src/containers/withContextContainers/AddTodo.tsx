@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 
-import useSize from '../hooks/useSize'
-import useInput from '../hooks/useInput'
+import useSize from '../../hooks/useSize'
+import useInput from '../../hooks/useInput'
 
 import TodosContext from './TodosContext'
 
-import AddTodo from '../components/AddTodo'
+import AddTodo from '../../components/AddTodo'
 
 const AddToDoContainer = () => {
   const { dispatch } = useContext(TodosContext)

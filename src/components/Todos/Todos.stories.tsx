@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
 import Todos from '.'
-import { useTodos } from '../../customHookContainers/TodoList'
+import { useTodos } from '../../containers/customHookContainers/TodoList'
 
 const DEFAULT_TODOS: Todo[] = [
   {

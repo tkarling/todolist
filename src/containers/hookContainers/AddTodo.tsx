@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import AddTodo from '../components/AddTodo'
+import AddTodo from '../../components/AddTodo'
 
 const AddToDoContainer = React.memo((props: { onAdd: Function }) => {
   const inputRef: any = useRef()

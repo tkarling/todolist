@@ -1,9 +1,9 @@
 import React from 'react'
 
-import useInput from '../hooks/useInput'
-import useSize from '../hooks/useSize'
+import useInput from '../../hooks/useInput'
+import useSize from '../../hooks/useSize'
 
-import AddTodo from '../components/AddTodo'
+import AddTodo from '../../components/AddTodo'
 
 const AddToDoContainer = React.memo(
   ({ onAdd }: { onAdd: (title: string) => void }) => {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-import useLocalStorage from '../hooks/useLocalStorage'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 import AddTodo from './AddTodo'
-import Todos from '../components/Todos'
+import Todos from '../../components/Todos'
 
 // exported for storybook
 export const useTodos = (defaultTodos: Todo[] = []) => {

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import './App.css'
-import TodoListC from './containers/TodoList'
-import TodoListH from './hookContainers/TodoList'
-import TodoListCH from './customHookContainers/TodoList'
-import TodoListCHR from './reducerContainers/TodoList'
-import TodoListCtx from './withContextContainers/TodoList'
-import TodoListOptCtx from './withOptimizedContextContainers/TodoList'
+import TodoListC from './containers/classicContainers/TodoList'
+import TodoListH from './containers/hookContainers/TodoList'
+import TodoListCH from './containers/customHookContainers/TodoList'
+import TodoListCHR from './containers/reducerContainers/TodoList'
+import TodoListCtx from './containers/withContextContainers/TodoList'
+import TodoListOptCtx from './containers/withOptimizedContextContainers/TodoList'
 
 const App = () => {
   const [type, setType] = useState('optContextHooks')

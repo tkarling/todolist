@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AddTodo from './AddTodo'
-import Todos from '../components/Todos'
+import Todos from '../../components/Todos'
 
 const STORAGE_KEY = 'todos'
 

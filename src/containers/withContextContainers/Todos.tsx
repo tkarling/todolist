@@ -1,8 +1,5 @@
-// Note! this file is same as ../withContextContainers/Todos
-// But it needs to be copied to use the context in this dir
-
 import React, { useContext, useCallback } from 'react'
-import Todos from '../components/Todos'
+import Todos from '../../components/Todos'
 import TodosContext from './TodosContext'
 
 const TodosContainer = () => {
