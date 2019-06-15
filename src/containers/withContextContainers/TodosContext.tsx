@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from 'react'
 import { createContext } from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage'
-import reducer from '../reducerContainers/todosReducer'
+import reducer from '../../reducers/todosReducer'
 
 const TodosContext: any = createContext([])
 

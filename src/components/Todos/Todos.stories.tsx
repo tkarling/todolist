@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
 import Todos from '.'
-import todosReducer from '../../containers/reducerContainers/todosReducer'
+import todosReducer from '../../reducers/todosReducer'
 
 const DEFAULT_TODOS: Todo[] = [
   {

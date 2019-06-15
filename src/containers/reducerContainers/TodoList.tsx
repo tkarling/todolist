@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useCallback } from 'react'
 
 import useLocalStorage from '../../hooks/useLocalStorage'
-import reducer from './todosReducer'
+import reducer from '../../reducers/todosReducer'
 
 import AddTodo from './AddTodo'
 import Todos from '../../components/Todos'
