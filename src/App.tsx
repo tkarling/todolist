@@ -5,9 +5,10 @@ import TodoListH from './hookContainers/TodoList'
 import TodoListCH from './customHookContainers/TodoList'
 import TodoListCHR from './reducerContainers/TodoList'
 import TodoListCtx from './withContextContainers/TodoList'
+import TodoListOptCtx from './withOptimizedContextContainers/TodoList'
 
 const App = () => {
-  const [type, setType] = useState('reducerHooks')
+  const [type, setType] = useState('optContextHooks')
 
   const toggleType = () => {
     switch (type) {
@@ -22,6 +23,9 @@ const App = () => {
         break
       case 'reducerHooks':
         setType('contextHooks')
+        break
+      case 'contextHooks':
+        setType('optContextHooks')
         break
       default:
         setType('classic')
@@ -39,6 +43,7 @@ const App = () => {
       {type === 'customHooks' && <TodoListCH />}
       {type === 'reducerHooks' && <TodoListCHR />}
       {type === 'contextHooks' && <TodoListCtx />}
+      {type === 'optContextHooks' && <TodoListOptCtx />}
     </div>
   )
 }
