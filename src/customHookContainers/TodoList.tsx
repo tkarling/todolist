@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import useLocalStorage from './useLocalStorage'
+
+import useLocalStorage from '../hooks/useLocalStorage'
+
 import AddTodo from './AddTodo'
 import Todos from '../components/Todos'
 

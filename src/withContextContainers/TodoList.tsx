@@ -1,7 +1,9 @@
 import React from 'react'
+
+import { TodosContext, useTodosFromStorage } from './TodosContext'
+
 import AddTodo from './AddTodo'
 import Todos from './Todos'
-import { TodosContext, useTodosFromStorage } from './TodosContext'
 
 const STORAGE_KEY = 'todos' + 'Ctx'
 

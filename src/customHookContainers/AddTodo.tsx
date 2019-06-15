@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
+
+import useSize from '../hooks/useSize'
+
 import AddTodo from '../components/AddTodo'
-import useSize from './useSize'
 
 // exported for storybook
 export const useAddTodo = (onAdd: (title: string) => void) => {

@@ -7,7 +7,7 @@ import TodoListCHR from './reducerContainers/TodoList'
 import TodoListCtx from './withContextContainers/TodoList'
 
 const App = () => {
-  const [type, setType] = useState('contextHooks')
+  const [type, setType] = useState('reducerHooks')
 
   const toggleType = () => {
     switch (type) {
