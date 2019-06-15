@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
 import Todos from '.'
-import todosReducer from '../../reducers/todosReducer'
+import todosReducer, { ACTIONS } from '../../reducers/todosReducer'
 
 const DEFAULT_TODOS: Todo[] = [
   {
@@ -26,8 +26,8 @@ const TodosContainer = ({}) => {
   return (
     <Todos
       todos={todos as any}
-      onDelete={(todo: Todo) => dispatch({ type: 'delete', todo })}
-      onToggle={(todo: Todo) => dispatch({ type: 'toggle', todo })}
+      onDelete={(todo: Todo) => dispatch({ type: ACTIONS.delete, todo })}
+      onToggle={(todo: Todo) => dispatch({ type: ACTIONS.toggle, todo })}
     />
   )
 }

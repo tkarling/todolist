@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useCallback } from 'react'
 
 import useLocalStorage from '../../hooks/useLocalStorage'
-import reducer from '../../reducers/todosReducer'
+import reducer, { ACTIONS } from '../../reducers/todosReducer'
 
 import AddTodo from './AddTodo'
 import Todos from '../../components/Todos'
@@ -17,13 +17,13 @@ const TodoList = () => {
   }, [todos])
 
   const onAdd = useCallback((title: string) => {
-    dispatch({ type: 'add', title })
+    dispatch({ type: ACTIONS.add, title })
   }, [])
   const onDelete = useCallback((todo: Todo) => {
-    dispatch({ type: 'delete', todo })
+    dispatch({ type: ACTIONS.delete, todo })
   }, [])
   const onToggle = useCallback((todo: Todo) => {
-    dispatch({ type: 'toggle', todo })
+    dispatch({ type: ACTIONS.toggle, todo })
   }, [])
 
   return (

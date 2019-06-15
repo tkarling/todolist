@@ -4,13 +4,14 @@ import useSize from '../../hooks/useSize'
 import useInput from '../../hooks/useInput'
 
 import TodosContext from './TodosContext'
+import { ACTIONS } from '../../reducers/todosReducer'
 
 import AddTodo from '../../components/AddTodo'
 
 const AddToDoContainer = () => {
   const { dispatch } = useContext(TodosContext)
   const [title, inputRef, { onSubmit, onChange }] = useInput(() =>
-    dispatch({ type: 'add', title })
+    dispatch({ type: ACTIONS.add, title })
   )
   const [size, ref] = useSize()
   console.log('renderctxadd')

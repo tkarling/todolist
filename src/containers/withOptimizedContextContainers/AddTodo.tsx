@@ -2,6 +2,7 @@ import React from 'react'
 
 import useSize from '../../hooks/useSize'
 import useInput from '../../hooks/useInput'
+import { ACTIONS } from '../../reducers/todosReducer'
 
 import { connect, selectDispatchOnly } from './TodosContext'
 
@@ -9,7 +10,7 @@ import AddTodo from '../../components/AddTodo'
 
 const AddToDoContainer = React.memo(({ dispatch }: any) => {
   const [title, inputRef, { onSubmit, onChange }] = useInput(
-    () => dispatch({ type: 'add', title }),
+    () => dispatch({ type: ACTIONS.add, title }),
     true
   )
   const [size, ref] = useSize()
