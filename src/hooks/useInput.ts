@@ -1,21 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useLayoutEffect } from 'react'
 
 const useFocus = (initialFocus = false) => {
   const ref: any = useRef()
-  useEffect(() => {
-    if (initialFocus) {
+  useLayoutEffect(() => {
+    if (initialFocus && ref.current) {
       ref.current.focus()
     }
-  }, [])
+  }, [ref.current])
 
   const setFocus = () => {
-    ref.current.focus()
+    if (ref.current) {
+      ref.current.focus()
+    }
   }
 
   return [ref, setFocus]
 }
 
-const useInput = (onAdd: (title: string) => void, initialFocus = false) => {
+const useInput = (onAdd?: (title: string) => void, initialFocus = false) => {
   const [ref, setFocus] = useFocus(initialFocus)
 
   const [value, setValue] = useState('')
@@ -28,7 +30,9 @@ const useInput = (onAdd: (title: string) => void, initialFocus = false) => {
     if (initialFocus) {
       setFocus()
     }
-    onAdd(title)
+    if (onAdd) {
+      onAdd(title)
+    }
   }
 
   return [value, ref, { onSubmit, onChange, setFocus }]

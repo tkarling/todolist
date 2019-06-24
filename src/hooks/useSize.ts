@@ -15,7 +15,9 @@ const useSize = () => {
 
     const element = ref.current
     updateSize()
-    elementResizeEvent(element as any, updateSize)
+    if (element) {
+      elementResizeEvent(element as any, updateSize)
+    }
     return () => elementResizeEvent.unbind(element as any, updateSize)
   }, [])
 

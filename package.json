@@ -34,6 +34,8 @@
     "@storybook/addon-links": "^5.0.11",
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.0.11",
+    "@testing-library/react": "^8.0.1",
+    "@testing-library/react-hooks": "^1.0.4",
     "@types/element-resize-event": "^2.0.0",
     "@types/jest": "^24.0.12",
     "@types/node": "11.13.6",
@@ -44,6 +46,8 @@
     "@types/storybook__addon-links": "^3.3.4",
     "@types/storybook__react": "^4.0.1",
     "babel-loader": "8.0.5",
-    "react-docgen-typescript-loader": "^3.1.0"
+    "jest-dom": "^3.5.0",
+    "react-docgen-typescript-loader": "^3.1.0",
+    "react-test-renderer": "16.8.6"
   }
 }
