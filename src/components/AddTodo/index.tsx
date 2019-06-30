@@ -1,4 +1,6 @@
 import React from 'react'
+import { ADD_TODO_TEXTS as TEXTS } from '../texts'
+
 import styles from './AddTodo.module.css'
 
 const AddTodo = ({
@@ -35,11 +37,15 @@ const AddTodo = ({
       <input
         className={styles.AddTodoInputBox}
         ref={inputRef}
-        placeholder="add todo"
+        placeholder={TEXTS.placeHolder}
         value={title}
         onChange={onInputChange}
       />
-      <input className={styles.AddTodoSubmit} type="submit" value="submit" />
+      <input
+        className={styles.AddTodoSubmit}
+        type="submit"
+        value={TEXTS.submitButton}
+      />
     </form>
   )
 }

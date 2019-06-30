@@ -1,4 +1,5 @@
 import React from 'react'
+import { TODOS_TEXTS as TEXTS } from '../texts'
 import styles from './Todos.module.css'
 import Button from '../Button'
 
@@ -18,6 +19,7 @@ const Todos = ({
           <div>
             <input
               type="checkbox"
+              role="checkbox"
               checked={todo.completed}
               onChange={event => onToggle && onToggle(todo)}
             />
@@ -29,7 +31,7 @@ const Todos = ({
         </div>
       ))
     ) : (
-      <span className={styles.TodosEmpty}>No items on this list </span>
+      <span className={styles.TodosEmpty}>{TEXTS.noItems}</span>
     )}
   </div>
 )

@@ -14,7 +14,6 @@ const AddToDoContainer = () => {
     dispatch({ type: ACTIONS.add, title })
   )
   const [size, ref] = useSize()
-  console.log('renderctxadd')
 
   return (
     <div ref={ref as any}>
