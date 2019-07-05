@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useLayoutEffect } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 
 const useFocus = (initialFocus = false) => {
   const ref: any = useRef()

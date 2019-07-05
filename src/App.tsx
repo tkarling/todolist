@@ -7,11 +7,16 @@ import TodoListCHR from './containers/reducerContainers/TodoList'
 import TodoListCtx from './containers/withContextContainers/TodoList'
 import TodoListOptCtx from './containers/withOptimizedContextContainers/TodoList'
 
+import Login from './forms/Login'
+
 const App = () => {
-  const [type, setType] = useState('optContextHooks')
+  const [type, setType] = useState('login')
 
   const toggleType = () => {
     switch (type) {
+      case 'login':
+        setType('classic')
+        break
       case 'classic':
         setType('hooks')
         break
@@ -28,7 +33,7 @@ const App = () => {
         setType('optContextHooks')
         break
       default:
-        setType('classic')
+        setType('login')
         break
     }
   }
@@ -44,6 +49,7 @@ const App = () => {
       {type === 'reducerHooks' && <TodoListCHR />}
       {type === 'contextHooks' && <TodoListCtx />}
       {type === 'optContextHooks' && <TodoListOptCtx />}
+      {type === 'login' && <Login />}
     </div>
   )
 }
