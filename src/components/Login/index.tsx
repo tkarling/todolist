@@ -1,5 +1,8 @@
 import React from 'react'
 
+import styles from './Login.module.css'
+import { link } from 'fs'
+
 const FormField = ({
   label,
   onChange
@@ -8,22 +11,87 @@ const FormField = ({
   onChange: Function
 }) => {
   return (
-    <div>
+    <div className={styles.FormField}>
       <label>{label}:</label>
-      <input name={label} onChange={onChange as any} />
-      <div />
+      <input
+        className={styles.FormFieldInput}
+        name={label}
+        onChange={onChange as any}
+      />
     </div>
   )
 }
 
-const Login = ({ onChange, onSubmit }: { onChange: any; onSubmit: any }) => {
+const Form = ({
+  onSubmit,
+  title,
+  link,
+  children
+}: {
+  onSubmit: any
+  title: string
+  link?: { label: string; onClick: any }
+  children: any
+}) => {
+  const onSubmitP = (event: any) => {
+    event.preventDefault()
+    onSubmit(event)
+  }
   return (
-    <form onSubmit={onSubmit}>
-      <FormField label="Username" onChange={onChange} />
-      <FormField label="Password" onChange={onChange} />
-      <button>Submit</button>
+    <form className={styles.Form} onSubmit={onSubmitP}>
+      <div className={styles.FormTitleRow}>
+        <div className={styles.FormTitle}>{title}</div>
+        {link && (
+          <a className={styles.FormLink} onClick={link.onClick}>
+            {link.label}
+          </a>
+        )}
+      </div>
+      {children}
+      <button className={styles.FormSubmit}>Submit</button>
     </form>
   )
 }
 
-export default Login
+export const Login = ({
+  onChange,
+  onSubmit,
+  onGotoRegister
+}: {
+  onChange?: any
+  onSubmit?: any
+  onGotoRegister?: any
+}) => {
+  return (
+    <Form
+      onSubmit={onSubmit}
+      title="Sign In"
+      link={{ label: 'Need an account? Sign Up', onClick: onGotoRegister }}
+    >
+      <FormField label="Username" onChange={onChange} />
+      <FormField label="Password" onChange={onChange} />
+    </Form>
+  )
+}
+
+export const Register = ({
+  onChange,
+  onSubmit,
+  onGotoLogin
+}: {
+  onChange?: any
+  onSubmit?: any
+  onGotoLogin?: any
+}) => {
+  return (
+    <Form
+      onSubmit={onSubmit}
+      title="Sign Up"
+      link={{ label: 'Return to Sign In', onClick: onGotoLogin }}
+    >
+      <FormField label="Username" onChange={onChange} />
+      <FormField label="Password" onChange={onChange} />
+      <FormField label="Repeat Password" onChange={onChange} />
+    </Form>
+  )
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.css'
 import TodoListC from './containers/classicContainers/TodoList'
 import TodoListH from './containers/hookContainers/TodoList'
@@ -8,48 +8,28 @@ import TodoListCtx from './containers/withContextContainers/TodoList'
 import TodoListOptCtx from './containers/withOptimizedContextContainers/TodoList'
 
 import Login from './forms/Login'
+import usePage from './hooks/usePage'
 
 const App = () => {
-  const [type, setType] = useState('login')
-
-  const toggleType = () => {
-    switch (type) {
-      case 'login':
-        setType('classic')
-        break
-      case 'classic':
-        setType('hooks')
-        break
-      case 'hooks':
-        setType('customHooks')
-        break
-      case 'customHooks':
-        setType('reducerHooks')
-        break
-      case 'reducerHooks':
-        setType('contextHooks')
-        break
-      case 'contextHooks':
-        setType('optContextHooks')
-        break
-      default:
-        setType('login')
-        break
-    }
-  }
+  const { currentPage, nextPage } = usePage({
+    pages: () => [
+      <Login />,
+      <TodoListC />,
+      <TodoListH />,
+      <TodoListCH />,
+      <TodoListCHR />,
+      <TodoListCtx />,
+      <TodoListOptCtx />
+    ],
+    firstPage: 0
+  })
 
   return (
     <div className="App">
       <div>
-        <button onClick={toggleType}>swap</button>
+        <button onClick={nextPage}>swap</button>
       </div>
-      {type === 'classic' && <TodoListC />}
-      {type === 'hooks' && <TodoListH />}
-      {type === 'customHooks' && <TodoListCH />}
-      {type === 'reducerHooks' && <TodoListCHR />}
-      {type === 'contextHooks' && <TodoListCtx />}
-      {type === 'optContextHooks' && <TodoListOptCtx />}
-      {type === 'login' && <Login />}
+      {currentPage()}
     </div>
   )
 }

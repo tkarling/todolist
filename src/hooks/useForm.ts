@@ -2,10 +2,10 @@ import { useState } from 'react'
 
 const useForm = (
   {
-    initialValues,
+    initialValues = {},
     callback
   }: {
-    initialValues: any
+    initialValues?: any
     callback: Function
   } = {
     initialValues: {},
