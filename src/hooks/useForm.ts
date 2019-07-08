@@ -1,30 +1,44 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+const noop = (what = 'validate') => (inputs: any) => {
+  console.log(what + ' called with:', inputs)
+  return {}
+}
 
 const useForm = (
   {
     initialValues = {},
-    callback
+    callback = noop('submit'),
+    validate = noop('validate')
   }: {
     initialValues?: any
-    callback: Function
+    callback?: Function
+    validate?: Function
   } = {
     initialValues: {},
-    callback: (inputs: any) => console.log('submit called with:', inputs)
+    callback: noop('submit'),
+    validate: noop('validate')
   }
 ) => {
   const [inputs, setInputs] = useState(initialValues)
+  const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && isSubmitting) {
+      callback()
+    }
+  }, [errors])
+
   const onSubmit = (event: any) => {
-    if (event) {
+    if (event && event.preventDefault) {
       event.preventDefault()
     }
-    callback(inputs)
+    setErrors(validate(inputs) || {})
+    setIsSubmitting(true)
   }
   const onChange = (event: any) => {
-    if (!event.target || !event.target.name) {
-      console.error('no event.target or event.target.name', event)
-      return
-    }
-    const { name = '', value } = event.target
+    const { name = '', value } = event.target ? event.target : event
     setInputs((inputs: any) => ({
       ...inputs,
       [name]: value
@@ -33,7 +47,8 @@ const useForm = (
   return {
     onSubmit,
     onChange,
-    inputs
+    inputs,
+    errors
   }
 }
 export default useForm

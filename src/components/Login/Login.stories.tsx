@@ -12,7 +12,8 @@ import { Login, Register } from '../Login'
 
 const LoginContainer = ({}) => {
   const { inputs, onChange, onSubmit } = useForm({
-    callback: action('callback called')
+    callback: action('callback called'),
+    validate: action('validate called')
   })
   const pages = () => [
     <Login onSubmit={onSubmit} onChange={onChange} onGotoRegister={nextPage} />,

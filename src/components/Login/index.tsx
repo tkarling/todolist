@@ -1,26 +1,27 @@
 import React from 'react'
 
 import styles from './Login.module.css'
-import { link } from 'fs'
+import { FIELDS, Field } from './data'
 
 const FormField = ({
-  label,
+  field,
   onChange
 }: {
-  label: string
+  field: Field
   onChange: Function
-}) => {
-  return (
-    <div className={styles.FormField}>
-      <label>{label}:</label>
-      <input
-        className={styles.FormFieldInput}
-        name={label}
-        onChange={onChange as any}
-      />
-    </div>
-  )
-}
+}) => (
+  <div className={styles.FormField}>
+    <label>{field.label || field.id}:</label>
+    <input
+      className={styles.FormFieldInput}
+      name={field.name || field.id}
+      type={field.type}
+      onChange={onChange as any}
+      required={field.required}
+      placeholder={field.placeholder || field.label || field.id}
+    />
+  </div>
+)
 
 const Form = ({
   onSubmit,
@@ -68,8 +69,8 @@ export const Login = ({
       title="Sign In"
       link={{ label: 'Need an account? Sign Up', onClick: onGotoRegister }}
     >
-      <FormField label="Username" onChange={onChange} />
-      <FormField label="Password" onChange={onChange} />
+      <FormField field={FIELDS.username} onChange={onChange} />
+      <FormField field={FIELDS.password} onChange={onChange} />
     </Form>
   )
 }
@@ -89,9 +90,9 @@ export const Register = ({
       title="Sign Up"
       link={{ label: 'Return to Sign In', onClick: onGotoLogin }}
     >
-      <FormField label="Username" onChange={onChange} />
-      <FormField label="Password" onChange={onChange} />
-      <FormField label="Repeat Password" onChange={onChange} />
+      <FormField field={FIELDS.username} onChange={onChange} />
+      <FormField field={FIELDS.password} onChange={onChange} />
+      <FormField field={FIELDS.repeatPassword} onChange={onChange} />
     </Form>
   )
 }
