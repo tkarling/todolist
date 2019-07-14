@@ -10,9 +10,12 @@ import TodoListOptCtx from './containers/withOptimizedContextContainers/TodoList
 import Login from './forms/Login'
 import usePage from './hooks/usePage'
 
+import IsMountedTest from './containers/classicContainers/IsMountedTest'
+
 const App = () => {
   const { currentPage, nextPage } = usePage({
     pages: () => [
+      <IsMountedTest />,
       <Login />,
       <TodoListC />,
       <TodoListH />,
