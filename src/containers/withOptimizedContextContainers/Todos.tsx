@@ -10,12 +10,18 @@ import TodosContext from './TodosContext'
 
 const TodosContainer = () => {
   const { todos, dispatch } = useContext(TodosContext)
-  const onDelete = useCallback((todo: Todo) => {
-    dispatch({ type: ACTIONS.delete, todo })
-  }, [])
-  const onToggle = useCallback((todo: Todo) => {
-    dispatch({ type: ACTIONS.toggle, todo })
-  }, [])
+  const onDelete = useCallback(
+    (todo: Todo) => {
+      dispatch({ type: ACTIONS.delete, todo })
+    },
+    [dispatch]
+  )
+  const onToggle = useCallback(
+    (todo: Todo) => {
+      dispatch({ type: ACTIONS.toggle, todo })
+    },
+    [dispatch]
+  )
 
   return <Todos todos={todos} onDelete={onDelete} onToggle={onToggle} />
 }

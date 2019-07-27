@@ -11,7 +11,7 @@ export const useTodosFromStorage = (storageKey: string) => {
 
   useEffect(() => {
     setStoredTodos(todos)
-  }, [todos])
+  }, [todos, setStoredTodos])
 
   return {
     todos,

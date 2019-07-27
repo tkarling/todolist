@@ -6,7 +6,7 @@ const useFocus = (initialFocus = false) => {
     if (initialFocus && ref.current) {
       ref.current.focus()
     }
-  }, [ref.current])
+  }, [initialFocus])
 
   const setFocus = () => {
     if (ref.current) {

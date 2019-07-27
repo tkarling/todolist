@@ -4,7 +4,7 @@ import useSize from '../../hooks/useSize'
 import useInput from '../../hooks/useInput'
 import { ACTIONS } from '../../reducers/todosReducer'
 
-import { connect, selectDispatchOnly } from './TodosContext'
+import { connect, useSelectDispatchOnly } from './TodosContext'
 
 import AddTodo from '../../components/AddTodo'
 
@@ -31,5 +31,5 @@ const AddToDoContainer = React.memo(({ dispatch }: any) => {
 
 export default connect(
   AddToDoContainer,
-  selectDispatchOnly
+  useSelectDispatchOnly
 )

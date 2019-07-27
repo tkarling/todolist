@@ -19,7 +19,6 @@ const Todos = ({
           <div>
             <input
               type="checkbox"
-              role="checkbox"
               checked={todo.completed}
               onChange={event => onToggle && onToggle(todo)}
             />

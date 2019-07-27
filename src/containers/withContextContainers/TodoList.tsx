@@ -6,7 +6,7 @@ import AddTodo from './AddTodo'
 import Todos from './Todos'
 
 // exported for testing
-export const STORAGE_KEY = 'todos' + 'Ctx'
+export const STORAGE_KEY = 'todosCtx'
 
 const TodoList = () => {
   const todosContext = useTodosFromStorage(STORAGE_KEY)

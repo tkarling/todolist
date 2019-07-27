@@ -6,7 +6,7 @@ import reducer, { ACTIONS } from '../../reducers/todosReducer'
 import AddTodo from './AddTodo'
 import Todos from '../../components/Todos'
 
-const STORAGE_KEY = 'todos' + 'CHR'
+const STORAGE_KEY = 'todosCHR'
 
 const TodoList = () => {
   const [storedTodos, setStoredTodos] = useLocalStorage(STORAGE_KEY)
@@ -14,7 +14,7 @@ const TodoList = () => {
 
   useEffect(() => {
     setStoredTodos(todos)
-  }, [todos])
+  }, [setStoredTodos, todos])
 
   const onAdd = useCallback((title: string) => {
     dispatch({ type: ACTIONS.add, title })

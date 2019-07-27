@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useContext, useMemo } from 'react'
+import React, { useReducer, useEffect, useContext } from 'react'
 import { createContext } from 'react'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import reducer from '../../reducers/todosReducer'
@@ -11,7 +11,7 @@ export const useTodosFromStorage = (storageKey: string) => {
 
   useEffect(() => {
     setStoredTodos(todos)
-  }, [todos])
+  }, [setStoredTodos, todos])
 
   return {
     todos,
@@ -20,7 +20,7 @@ export const useTodosFromStorage = (storageKey: string) => {
 }
 
 // from https://stackoverflow.com/questions/51317371/react-context-api-and-avoiding-re-renders
-export function selectDispatchOnly() {
+export function useSelectDispatchOnly() {
   const { dispatch } = useContext(TodosContext)
   return {
     dispatch
