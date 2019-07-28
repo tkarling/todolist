@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Item, MemoItem } from './WithHooks'
+import { Item, MemoItem, ItemWState, MemoItemWState } from './Components'
 
 class NoHooks extends Component<
   {},
@@ -22,6 +22,7 @@ class NoHooks extends Component<
     const { a, b, inputs } = this.state
     return (
       <div>
+        <h1>Testing w Classes</h1>
         <Item title="No Memo:" id="a" value={a} onClick={this.setValue} />
         <MemoItem title="With Memo:" id="b" value={b} onClick={this.setValue} />
         <hr />
@@ -37,6 +38,9 @@ class NoHooks extends Component<
           value={inputs['two']}
           onClick={this.setValue}
         />
+        <hr />
+        <ItemWState title="Local state" />
+        <MemoItemWState title="Local state with Memo" />
       </div>
     )
   }

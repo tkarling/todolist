@@ -1,30 +1,5 @@
 import React, { useState, useCallback } from 'react'
-
-interface ItemsParams {
-  title: string
-  id: string
-  value: string
-  onClick: Function
-}
-export const Item = ({ title, id, value, onClick }: ItemsParams) => {
-  console.log(title, 'id: ', id, 'value: ', value)
-  return (
-    <div onClick={() => onClick(id, value + id)}>
-      {title} {value}
-    </div>
-  )
-}
-
-export const MemoItem = React.memo(
-  ({ title, id, value, onClick }: ItemsParams) => {
-    console.log(title, 'id: ', id, 'value: ', value)
-    return (
-      <div onClick={() => onClick(id, value + id)}>
-        {title} {value}
-      </div>
-    )
-  }
-)
+import { Item, MemoItem, ItemWState, MemoItemWState } from './Components'
 
 const WithHooks = () => {
   console.log('render wh')
@@ -43,6 +18,7 @@ const WithHooks = () => {
   }, [])
   return (
     <div>
+      <h1>Testing w Hooks</h1>
       <Item title="No Memo:" id="a" value={a} onClick={setValue} />
       <MemoItem title="With Memo:" id="b" value={b} onClick={setValue} />
       <hr />
@@ -58,6 +34,9 @@ const WithHooks = () => {
         value={inputs['two']}
         onClick={setValue}
       />
+      <hr />
+      <ItemWState title="Local state" />
+      <MemoItemWState title="Local state with Memo" />
     </div>
   )
 }
