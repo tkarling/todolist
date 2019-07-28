@@ -9,7 +9,7 @@ import Todos from '../../components/Todos'
 const STORAGE_KEY = 'todosCHR'
 
 const TodoList = () => {
-  const [storedTodos, setStoredTodos] = useLocalStorage(STORAGE_KEY)
+  const [storedTodos, setStoredTodos] = useLocalStorage(STORAGE_KEY, [])
   const [todos, dispatch] = useReducer(reducer, [], () => storedTodos)
 
   useEffect(() => {

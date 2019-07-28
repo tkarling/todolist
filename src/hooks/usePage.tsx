@@ -19,9 +19,15 @@ const usePage = (
       currentPageIndex === pages().length - 1 ? 0 : currentPageIndex + 1
     )
   }
+  const prevPage = () => {
+    setCurrenPageIndex(
+      currentPageIndex === 0 ? pages().length - 1 : currentPageIndex - 1
+    )
+  }
   return {
     currentPage,
-    nextPage
+    nextPage,
+    prevPage
   }
 }
 export default usePage

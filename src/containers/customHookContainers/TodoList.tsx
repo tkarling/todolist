@@ -34,7 +34,7 @@ const useTodos = (defaultTodos: Todo[] = []) => {
 const STORAGE_KEY = 'todosCH'
 
 const TodoList = () => {
-  const [storedTodos, setStoredTodos] = useLocalStorage(STORAGE_KEY)
+  const [storedTodos, setStoredTodos] = useLocalStorage(STORAGE_KEY, [])
   const [todos, onAddR, onDeleteR, onToggleR] = useTodos(storedTodos)
 
   useEffect(() => {
