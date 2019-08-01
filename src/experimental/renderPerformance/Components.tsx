@@ -52,3 +52,35 @@ export const MemoItemWState = React.memo(({ title }: { title: string }) => {
     </div>
   )
 })
+
+interface ObjectItemsParams {
+  title: string
+  id: string
+  value: { id: string }
+  onClick: Function
+}
+
+export const ItemWObject = ({
+  title,
+  id,
+  value,
+  onClick
+}: ObjectItemsParams) => {
+  console.log(title, 'id: ', id, 'value: ', value)
+  return (
+    <div onClick={() => onClick(id, value.id + id)}>
+      {title} {value.id}
+    </div>
+  )
+}
+
+export const MemoItemWObject = React.memo(
+  ({ title, id, value, onClick }: ObjectItemsParams) => {
+    console.log(title, 'id: ', id, 'value: ', value)
+    return (
+      <div onClick={() => onClick(id, value.id + id)}>
+        {title} {value.id}
+      </div>
+    )
+  }
+)
